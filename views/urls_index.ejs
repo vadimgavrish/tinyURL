@@ -15,9 +15,15 @@
 
                     <li style="list-style-type: none"><%= key %> - <%= urls[key]%></li>
 
+                    <form method="post" action="/urls/<%= key%>/delete">
+
+                        <button>Delete this URL!</button>
+
+                    </form>
+
                 <% }; %>
             
-            </li>
+            <h2><a href="/urls/new">Add a new URL</a></h2>
         </div>
         
     </body>

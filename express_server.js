@@ -31,12 +31,10 @@ app.get("/urls/:id", (req, res) => {
   res.render("urls_show", data);
 });
 
-app.post("/urls", (req, res) => {
-  let longURL =  req.body.longURL;
+app.post("/urls", (req, res) => {   
   let key = generateRandomString();
-  urlDatabase[key] = longURL;
+  urlDatabase[key] = req.body.longURL;
   res.redirect(`/urls/${key}`);
-  console.log(urlDatabase);
 });
 
 app.get("/u/:shortURL", (req, res) => {
@@ -45,11 +43,12 @@ app.get("/u/:shortURL", (req, res) => {
 });
 
 app.get('/urls.json', (req, res) => { 
-    res.json(urlDatabase); 
+  res.json(urlDatabase); 
 });
 
-app.get('/hello', (req,res) => {
-    res.end('<html><body>Hello <b>World</b></body></html>\n');
+app.post('/urls/:id/delete', (req, res) => {
+  delete urlDatabase[req.params.id];
+  res.redirect('/urls');
 });
 
 app.listen(PORT, () => {
