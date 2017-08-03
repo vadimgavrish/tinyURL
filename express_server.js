@@ -23,7 +23,7 @@ const users = {
   'userTwoID': {
     id: 'userTwoID',
     email: 'usertwo@example.com',
-    passowrd: 'testpassword'
+    password: 'test'
   }
 };
 
@@ -34,10 +34,8 @@ app.get("/", (req, res) => {
 app.get('/urls', (req, res) => {
   let data = { 
     urls: urlDatabase,
-    user: users[req.cookies['user_ID']],
-    
+    user: users[req.cookies['user_ID']]
   };
-  console.log(data);
   res.render('urls_index', data);
 });
 
@@ -71,10 +69,8 @@ app.post("/urls", (req, res) => {
   res.redirect(`/urls/${key}`);
 });
 
-// new user registration
 app.post('/register', (req, res) => {
 
-  // check if email already in use
     for (key in users) {
       if (users[key].email == req.body.email) {
           res.status(400).send('Email already in use!');
@@ -82,7 +78,6 @@ app.post('/register', (req, res) => {
       };
     };
 
-  // check for valid inputs
   if (!req.body.email) {
       res.status(400).send('Please enter a email address!');
       return;
@@ -91,7 +86,6 @@ app.post('/register', (req, res) => {
       return;
   };
 
-  // create new user 
   let userID = generateRandomString();
   users[userID] = {};
   users[userID].id = userID;
@@ -102,9 +96,21 @@ app.post('/register', (req, res) => {
   res.redirect('/urls');
 });
 
+app.get('/login', (req, res) => {
+  res.render("urls_login");
+});
+
 app.post('/login', (req, res) => {
-  res.cookie('username', req.body.username);
-  res.redirect('/urls');  
+  for (key in users) {
+    if (users[key].email === req.body.email) {
+      if (users[key].password === req.body.password) {
+        res.cookie('user_ID', users[key].id);
+        res.redirect('/');
+        return;     
+      }
+    }
+  }
+  res.status(400).send('invalid login');
 });
 
 app.post('/logout', (req, res) => {
@@ -133,3 +139,9 @@ app.listen(PORT, () => {
 function generateRandomString() {
     return randomString.generate(6);
 }
+
+// check current users
+app.get('/users', (req, res) => {
+  console.log(users);
+  res.redirect('/urls');
+});

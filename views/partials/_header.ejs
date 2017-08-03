@@ -1,17 +1,18 @@
 <title>TinyURL</title>
 
+<h3><a href="/register">Register here</a></h3>
+
+
+
 <% if (user) { %>
 
-    <p>Hello <%= user.email %>!</p>
-
-    <form method='post' action='/logout'>
+<h5>hello <%= user.id %></h5>
+<form method='post' action='/logout'>
         <button>Log out</button>
     </form>
 
 <% } else { %>
 
-    <form method='post' action='/login'>
-        <input name='username'><button>Sign in</button>
-    </form>
+    <h5><a href='/login'>Login</a></h5>
 
 <% }; %>
