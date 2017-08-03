@@ -5,18 +5,19 @@
     </head>
     <body class='container'>
         <div>
-
             <h3>URL's</h3>
-               
-            
             <li style="list-style-type: none">
-
-
                 <%= shortURL %> - <%= longURL %>
-
-
             </li>
-            
+            <p>
+                <form method='post' action='/urls/<%= shortURL %>/update'>
+                    <label>Update URL:</label>
+                    <input name="updatedURL" id="updatedURL" type="text" placeholder="http://" style="width: 300px">
+                    <input type='submit' value='Submit'>
+                </form>
+            </p>
+
+
             <h3><a href="/urls">Go home</a></h3>
         </div>
         

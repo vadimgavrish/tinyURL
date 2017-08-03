@@ -14,7 +14,7 @@ var urlDatabase = {
 };
 
 app.get("/", (req, res) => {
-  res.end('Hello!');
+  res.redirect('/urls');
 });
 
 app.get('/urls', (req, res) => {
@@ -29,6 +29,11 @@ app.get("/urls/new", (req, res) => {
 app.get("/urls/:id", (req, res) => {
   let data = { shortURL: req.params.id, longURL: urlDatabase[req.params.id] };
   res.render("urls_show", data);
+});
+
+app.post("/urls/:id/update", (req, res) => {
+  urlDatabase[req.params.id] = req.body.updatedURL;
+  res.redirect('/urls');
 });
 
 app.post("/urls", (req, res) => {   
@@ -46,13 +51,13 @@ app.get('/urls.json', (req, res) => {
   res.json(urlDatabase); 
 });
 
-app.post('/urls/:id/delete', (req, res) => {
+app.post('/urls/:id', (req, res) => {
   delete urlDatabase[req.params.id];
   res.redirect('/urls');
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
+  console.log(`TinyURL app is listening on port ${PORT}!`);
 });
 
 function generateRandomString() {
