@@ -40,10 +40,16 @@ app.get('/urls', (req, res) => {
 });
 
 app.get("/urls/new", (req, res) => {
-  let data = {
-    user: users[req.cookies['user_ID']]
-  };
-  res.render("urls_new", data);
+
+  if (req.cookies['user_ID']) {
+    let data = {
+      user: users[req.cookies['user_ID']]
+    };
+    res.render("urls_new", data);
+    return;
+  } else {
+    res.redirect('/login');
+  }
 });
 
 app.get('/register', (req, res) => {
@@ -101,16 +107,19 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  for (key in users) {
+  for (var key in users) {
     if (users[key].email === req.body.email) {
       if (users[key].password === req.body.password) {
         res.cookie('user_ID', users[key].id);
         res.redirect('/');
         return;     
+      } else {
+        res.status(400).send('invalid password!');
+        return;
       }
     }
   }
-  res.status(400).send('invalid login');
+  res.status(400).send('invalid login!');
 });
 
 app.post('/logout', (req, res) => {
