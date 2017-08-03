@@ -1,8 +1,8 @@
 <title>TinyURL</title>
 
-<% if (username) { %>
+<% if (user) { %>
 
-    <p>Hello <%= username %>!</p>
+    <p>Hello <%= user.email %>!</p>
 
     <form method='post' action='/logout'>
         <button>Log out</button>
