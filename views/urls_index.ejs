@@ -12,14 +12,11 @@
 
             <h3>URL's</h3>
                 <% for (key in urls) { %>
-
-                    <li style="list-style-type: none"><a href="/urls/<%= key%>"><%= key %></a> - <%= urls[key]%></li>
-
                     <form method="post" action="/urls/<%= key%>">
-
-                        <button>Delete this URL!</button>
-
-                    </form>
+                    
+                    
+                    <li style="list-style-type: none"><a href="/urls/<%= key%>"><%= key %></a> - <%= urls[key]%> - <button>Delete this URL!</button></form></li>
+                    
 
                 <% }; %>
             

@@ -1,1 +1,29 @@
 <title>TinyURL</title>
+
+<% if (username) { %>
+
+    <p>Hello <%= username %>!</p>
+
+    <form method='post' action='/logout'>
+        <button>Log out</button>
+    </form>
+
+<% } else { %>
+
+    <form method='post' action='/login'>
+        <input name='username'><button>Sign in</button>
+    </form>
+
+
+
+<% }; %>
+
+
+
+<!-- <form method='post' action='/login'>
+    
+    <h2>Hello <%= username %>!</h2>
+
+    <input name='username'><button>Sign in</button>
+
+</form> -->
