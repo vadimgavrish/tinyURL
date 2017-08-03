@@ -9,9 +9,22 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
-var urlDatabase = {
+const urlDatabase = {
   'b2xVn2': "http://www.lighthouselabs.ca",
   '9sm5xK': "http://www.google.com"
+};
+
+const users = {
+  'userOneID': {
+    id: 'userOneID',
+    email: 'userone@example.com',
+    password: 'demopassword'
+  },
+  'userTwoID': {
+    id: 'userTwoID',
+    email: 'usertwo@example.com',
+    passowrd: 'testpassword'
+  }
 };
 
 app.get("/", (req, res) => {
@@ -33,6 +46,10 @@ app.get("/urls/new", (req, res) => {
   res.render("urls_new", data);
 });
 
+app.get('/register', (req, res) => {
+  res.render('urls_register');
+});
+
 app.get("/urls/:id", (req, res) => {
   let data = { 
     shortURL: req.params.id,
@@ -52,9 +69,41 @@ app.post("/urls", (req, res) => {
   res.redirect(`/urls/${key}`);
 });
 
+// new user registration
+app.post('/register', (req, res) => {
+
+  // check if email already in use
+    for (key in users) {
+    if (users[key].email == req.body.email) {
+      res.status(400).send('Email already in use!');
+      return;
+    };
+  };
+
+  // create new user 
+  let newUserID = generateRandomString();
+  users[newUserID] = {};
+  users[newUserID].id = newUserID;
+  users[newUserID].email = req.body.email;
+  users[newUserID].password = req.body.password;
+
+  // check for valid inputs
+  if (!users[newUserID].email) {
+      res.status(400).send('Please enter a email address!');
+  } else if (!users[newUserID].password) {
+      res.status(400).send('Please enter a password!');
+  } else {
+      res.cookie('user_id', users[newUserID].id);
+      console.log(users[newUserID]);
+      res.redirect('/urls');
+  };
+});
+
 app.post('/login', (req, res) => {
   res.cookie('username', req.body.username);
   res.redirect('/urls');
+
+  console.log(res.cookie['username']);  
 });
 
 app.post('/logout', (req, res) => {
