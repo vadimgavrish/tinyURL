@@ -80,7 +80,6 @@ app.listen(PORT, () => {
   console.log(`TinyURL app is listening on port ${PORT}!`);
 });
 
-
 function generateRandomString() {
     return randomString.generate(6);
 }
