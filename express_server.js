@@ -38,6 +38,12 @@ app.get("/", (req, res) => {
 });
 
 app.get('/urls', (req, res) => {
+
+  if (!req.cookies['user_ID']) {
+    res.redirect('/login');
+    return;
+  }
+
   let userDB = {};
   for (key in urlDatabase) {
     if (urlDatabase[key].userID === req.cookies['user_ID']) {
@@ -70,13 +76,19 @@ app.get('/register', (req, res) => {
 app.get("/urls/:id", (req, res) => {
   
   if (!urlDatabase[req.params.id]) {
+
+    // pop up saying invalid URL , ,mayb error code?
     console.log('empty link');
+    
     res.redirect('/urls');
     return;
   }
 
   if (urlDatabase[req.params.id].userID != req.cookies['user_ID']) {
+    
+    // tell user to login as correct user 
     console.log('wrong user');
+    
     res.redirect('/urls');
     return;
   }
@@ -98,7 +110,7 @@ app.post("/urls", (req, res) => {
   urlDatabase[key] = {};
   urlDatabase[key].userID = req.cookies['user_ID'];
   urlDatabase[key].longURL = req.body.longURL;
-  res.redirect(`/urls/${key}`);
+  res.redirect(`/urls`);
 });
 
 app.post('/register', (req, res) => {
