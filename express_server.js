@@ -69,8 +69,14 @@ app.get('/register', (req, res) => {
 
 app.get("/urls/:id", (req, res) => {
   
+  if (!urlDatabase[req.params.id]) {
+    console.log('empty link');
+    res.redirect('/urls');
+    return;
+  }
+
   if (urlDatabase[req.params.id].userID != req.cookies['user_ID']) {
-    console.log('wrong user!');
+    console.log('wrong user');
     res.redirect('/urls');
     return;
   }
