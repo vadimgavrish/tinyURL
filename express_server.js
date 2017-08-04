@@ -38,15 +38,20 @@ app.get("/", (req, res) => {
 });
 
 app.get('/urls', (req, res) => {
+  let userDB = {};
+  for (key in urlDatabase) {
+    if (urlDatabase[key].userID === req.cookies['user_ID']) {
+      userDB[key] = urlDatabase[key].longURL;
+    }
+  }
   let data = { 
-    urls: urlDatabase,
+    urls: userDB,
     user: req.cookies['user_ID']
   };
   res.render('urls_index', data);
 });
 
 app.get("/urls/new", (req, res) => {
-
   if (req.cookies['user_ID']) {
     let data = {
       user: req.cookies['user_ID']
@@ -63,6 +68,13 @@ app.get('/register', (req, res) => {
 });
 
 app.get("/urls/:id", (req, res) => {
+  
+  if (urlDatabase[req.params.id].userID != req.cookies['user_ID']) {
+    console.log('wrong user!');
+    res.redirect('/urls');
+    return;
+  }
+  
   let data = { 
     shortURL: req.params.id,
     longURL: urlDatabase[req.params.id].longURL

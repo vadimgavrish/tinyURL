@@ -14,11 +14,9 @@
                 <% for (key in urls) { %>
                     <form method="post" action="/urls/<%= key%>">
                     
-                        <% if (urls[key].userID === user) { %>
-
-                            <li style="list-style-type: none"><%= key %> - <%= urls[key].longURL%> - <button>Delete this URL!</button></li>
+                       
+                            <li style="list-style-type: none"><%= key %> - <%= urls[key]%> - <button>Delete this URL!</button></li>
                                 
-                        <% } %>
 
                     </form>
                 <% }; %>
