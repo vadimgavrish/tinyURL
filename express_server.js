@@ -13,31 +13,9 @@ app.use(cookieSession({
   keys: ["encryptme"]
 }));
 
-const urlDatabase = {
-  'b2xVn2': {
-    longURL: "http://www.lighthouselabs.ca", 
-    userID: 'userOneID'
-  },
-  '9sm5xK': {
-    longURL: "http://www.google.com",
-    userID: 'userTwoID'
-  }
-};
+const urlDatabase = {};
 
-const users = {
-  'userOneID': {
-    id: 'userOneID',
-    name: 'Nick',
-    email: 'userone@example.com',
-    password: 'demopassword'
-  },
-  'userTwoID': {
-    id: 'userTwoID',
-    name: 'Michelle',
-    email: 'usertwo@example.com',
-    password: 'test'
-  }
-};
+const users = {};
 
 app.get("/", (req, res) => {
   res.redirect('/urls');
@@ -150,10 +128,8 @@ app.post('/register', (req, res) => {
   users[userID].id = userID;
   users[userID].name = req.body.name;
   users[userID].email = req.body.email;
-  
   let password = req.body.password;
   users[userID].password = bcrypt.hashSync(password, 10);
-  
   req.session.user_ID = userID;
   res.redirect('/urls');
 });
