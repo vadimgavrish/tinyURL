@@ -1,18 +1,7 @@
 <title>TinyURL</title>
- <% if (!user) { %>
-<h3><a href="/register">Register here</a></h3>
- <% } %>
-
-
-<% if (user) { %>
-
-<h5>hello <%= user %></h5>
-<form method='post' action='/logout'>
+<div>
+    <h5>hello <%= name %>!</h5>
+    <form method='post' action='/logout'>
         <button>Log out</button>
     </form>
-
-<% } else { %>
-
-    <h5><a href='/login'>Login</a></h5>
-
-<% }; %>
+</div>
