@@ -62,6 +62,7 @@ app.get('/urls', (req, res) => {
   let data = { 
     urls: userDB,
     name: users[req.cookies['user_ID']].name,
+    email: users[req.cookies['user_ID']].email,
     user: req.cookies['user_ID']
   };
   res.render('urls_index', data);
@@ -71,6 +72,7 @@ app.get("/urls/new", (req, res) => {
   if (req.cookies['user_ID']) {
     let data = {
       name: users[req.cookies['user_ID']].name,
+      email: users[req.cookies['user_ID']].email,
       user: req.cookies['user_ID'],
     }
 
@@ -182,7 +184,7 @@ app.post('/logout', (req, res) => {
 
 app.get("/u/:shortURL", (req, res) => {
   if (!urlDatabase[req.params.shortURL]) {
-    console.log('invalid link');
+    console.log('not a valid page');
     res.redirect('/urls');
     return;
   }
