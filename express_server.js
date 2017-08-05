@@ -90,7 +90,10 @@ app.get("/urls/:id", (req, res) => {
   
   let data = { 
     shortURL: req.params.id,
-    longURL: urlDatabase[req.params.id].longURL
+    longURL: urlDatabase[req.params.id].longURL,
+    name: users[req.session.user_ID].name,
+    email: users[req.session.user_ID].email,
+    user: req.session.user_ID
   };
   res.render("urls_show", data);
 });
@@ -103,6 +106,10 @@ app.post("/urls/:id/update", (req, res) => {
 app.post("/urls", (req, res) => {   
 
   let longURL = req.body.longURL;
+  if (longURL === "") {
+    res.status(400).send('Please enter a valid URL!');
+    return;
+  }
   if ((longURL.substring(0,7) !== "http://") && (longURL.substring(0,8) !== "https://")) {
       longURL = `https://${longURL}`;
   }
