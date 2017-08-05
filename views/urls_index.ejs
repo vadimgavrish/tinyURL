@@ -8,20 +8,18 @@
             <% include ./partials/_header %>
         </header>
         <div class="container center">
-
             <h3>URL's</h3>
-
-                <% for (key in urls) { %>
-                    <form method="post" action="/urls/<%= key%>">
-                       
-                            <li style="list-style-type: none"><a href='/u/<%= key %>'><%= key %></a> - <%= urls[key]%> - <form method="post" action="/urls/<%= key%>"><button style="display: inline">Delete</button></form>
-                                
-                            <form action='/urls/<%= key %>'><button style="display: inline">Edit!</button></form></li>
-                                
-                <% }; %>
-
-            <h2><a href="/urls/new">Add a new URL</a></h2>
-
+            <% for (key in urls) { %>
+            <form method="post" action="/urls/<%= key%>">
+                <li style="list-style-type: none"><a href='/u/<%= key %>'><%= key %></a> - <%= urls[key]%> - <form method="post" action="/urls/<%= key%>"><button style="display: inline">Delete</button></li>
+            </form>
+            <form action='/urls/<%= key %>'>
+                <button style="display: inline">Edit!</button>
+            </form>
+            <% }; %>
+            <h2>
+                <a href="/urls/new">Add a new URL</a>
+            </h2>
         </div>
     </body>
 </html>
