@@ -1,3 +1,4 @@
+// Set up default app parameters
 const express = require('express');
 const app = express();
 const cookieSession = require('cookie-session');
@@ -14,7 +15,6 @@ app.use(cookieSession({
 }));
 
 const urlDatabase = {};
-
 const users = {};
 
 app.get("/", (req, res) => {
@@ -22,25 +22,26 @@ app.get("/", (req, res) => {
 });
 
 app.get('/urls', (req, res) => {
+  // Check if currently logged in user exists in database
   if (!users[req.session.user_ID]) {
     req.session = null;
     res.redirect('/login');
     return;
   }
 
+  // If user not logged in, redirect to login page
   if (!req.session.user_ID) {
     res.redirect('/login');
     return;
   }
 
+  // Send links that belong to logged in user to main page
   let userDB = {};
-
   for (key in urlDatabase) {
     if (urlDatabase[key].userID === req.session.user_ID) {
       userDB[key] = urlDatabase[key].longURL;
     }
   }
-
   let data = { 
     urls: userDB,
     name: users[req.session.user_ID].name,
@@ -100,10 +101,15 @@ app.post("/urls/:id/update", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {   
+
+  let longURL = req.body.longURL;
+  if ((longURL.substring(0,7) !== "http://") && (longURL.substring(0,8) !== "https://")) {
+      longURL = `https://${longURL}`;
+  }
   let key = randomString.generate(6);
   urlDatabase[key] = {};
   urlDatabase[key].userID = req.session.user_ID;
-  urlDatabase[key].longURL = req.body.longURL;
+  urlDatabase[key].longURL = longURL;
   res.redirect(`/urls/${key}`);
 });
 
