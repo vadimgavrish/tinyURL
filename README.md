@@ -4,9 +4,9 @@ TinyURL is a full stack web applications that shortens lengthy URL's and runs lo
 
 ## Final Product
 
-!["Login Page"]()
-!["Main Page"]()
-!["Add New URL Page"]()
+!["Login Page"](https://github.com/vadimgavrish/tinyURL/blob/master/docs/url_login.png?raw=true)
+!["Main Page"](https://github.com/vadimgavrish/tinyURL/blob/master/docs/url.png?raw=true)
+!["Add New URL Page"](https://github.com/vadimgavrish/tinyURL/blob/master/docs/url_new.png?raw=true)
 
 ## Dependencies
 
