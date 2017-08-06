@@ -2,24 +2,24 @@
 const express = require('express');
 const app = express();
 const cookieSession = require('cookie-session');
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 const randomString = require('randomstring');
 const bcrypt = require('bcrypt');
 const PORT = process.env.PORT || 8080; 
 
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
-app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieSession({
   name: 'session',
-  keys: ["encryptme"]
+  keys: ['encryptme']
 }));
 
 // Set up local URL and user databases
 const urlDatabase = {};
 const users = {};
 
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   res.redirect('/urls');
 });
 
@@ -30,13 +30,11 @@ app.get('/urls', (req, res) => {
     res.redirect('/login');
     return;
   }
-
   // If user not logged in, redirect to login page
   if (!req.session.user_ID) {
     res.redirect('/login');
     return;
   }
-
   // Send links that belong to logged in user to main page
   let userDB = {};
   for (key in urlDatabase) {
@@ -53,17 +51,16 @@ app.get('/urls', (req, res) => {
   res.render('urls_index', data);
 });
 
-app.post("/urls", (req, res) => {   
+app.post('/urls', (req, res) => {   
   // Check for valid URL input
   let longURL = req.body.longURL;
-  if (longURL === "") {
+  if (longURL === '') {
     res.status(400).send('Please enter a valid URL!');
     return;
   }
-  if ((longURL.substring(0,7) !== "http://") && (longURL.substring(0,8) !== "https://")) {
+  if ((longURL.substring(0,7) !== 'http://') && (longURL.substring(0,8) !== 'https://')) {
       longURL = `https://${longURL}`;
   }
-  
   // Generate and store short URL
   let key = randomString.generate(6);
   urlDatabase[key] = {};
@@ -80,7 +77,7 @@ app.get('/login', (req, res) => {
   }
   // Identify user and send to login page
   let user = req.session.user_ID;
-  res.render("urls_login", user);
+  res.render('urls_login', user);
 });
 
 app.post('/login', (req, res) => {
@@ -117,7 +114,6 @@ app.post('/register', (req, res) => {
       return;
     };
   }
-
   // Check if both email and password have been entered
   if (!req.body.email) {
     res.status(400).send('Please enter a email address!');
@@ -126,7 +122,6 @@ app.post('/register', (req, res) => {
     res.status(400).send('Please enter a password!');
     return;
   }
-
   // Create new user and store in database
   let userID = randomString.generate(6);
   users[userID] = {};
@@ -145,7 +140,7 @@ app.post('/logout', (req, res) => {
   res.redirect('/urls');
 });
 
-app.get("/urls/new", (req, res) => {
+app.get('/urls/new', (req, res) => {
   // Allow creation of new URL if user is logged in
   if (req.session.user_ID) {
     let data = {
@@ -153,26 +148,24 @@ app.get("/urls/new", (req, res) => {
       email: users[req.session.user_ID].email,
       user: req.session.user_ID
     }
-    res.render("urls_new", data);
+    res.render('urls_new', data);
     return;
   } else {
     res.redirect('/login');
   }
 });
 
-app.get("/urls/:id", (req, res) => {
+app.get('/urls/:id', (req, res) => {
   // Redirect to home if invalid link
   if (!urlDatabase[req.params.id]) {
     res.redirect('/urls');
   return;
   }
-
   // Prevent users from accessing each others 'update link' pages
   if (urlDatabase[req.params.id].userID != req.session.user_ID) {
     res.redirect('/urls');
     return;
   }
-  
   // Get correct short and long url
   let data = { 
     shortURL: req.params.id,
@@ -181,7 +174,7 @@ app.get("/urls/:id", (req, res) => {
     email: users[req.session.user_ID].email,
     user: req.session.user_ID
   };
-  res.render("urls_show", data);
+  res.render('urls_show', data);
 });
 
 app.post('/urls/:id', (req, res) => {
@@ -201,14 +194,14 @@ app.post('/urls/:id', (req, res) => {
   res.redirect('/urls');
 });
 
-app.post("/urls/:id/update", (req, res) => {
+app.post('/urls/:id/update', (req, res) => {
   // Check for corrent URL input
   let longURL = req.body.updatedURL;
-  if (longURL === "") {
+  if (longURL === '') {
     res.status(400).send('Please enter a valid URL!');
     return;
   }
-  if ((longURL.substring(0,7) !== "http://") && (longURL.substring(0,8) !== "https://")) {
+  if ((longURL.substring(0,7) !== 'http://') && (longURL.substring(0,8) !== 'https://')) {
       longURL = `https://${longURL}`;
   }
   // Overwrite old longURL with the new one
@@ -216,7 +209,7 @@ app.post("/urls/:id/update", (req, res) => {
   res.redirect('/urls');
 });
 
-app.get("/u/:shortURL", (req, res) => {
+app.get('/u/:shortURL', (req, res) => {
   // Send error if invalid URL entered
   if (!urlDatabase[req.params.shortURL]) {
     res.status(404).send('Page not found!');

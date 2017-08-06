@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head></head>
-  <body>
-    <% include partials/_header %>
-    <form action="/urls" method="POST" style="">
-      <label for="longURL">Enter a URL:</label>
-      <input name="longURL" id="longURL" type="text" placeholder="http://" style="width: 300px">
-      <input type="submit" value="Submit">
+<head>
+  <title>TinyURL - Local URL Shortener</title>
+  <link rel='stylesheet' type='text/css' href='/stylesheets/styles.css'>
+</head>
+<body>
+   <div class='myContent'>
+    <header>
+      <% include partials/_header %>
+    </header>
+    <form action='/urls' method='POST' style=''>
+      <label for='longURL'>Enter a URL:</label>
+      <input name='longURL' id='longURL' type='text' placeholder='http://' style='width: 300px'>
+      <input type='submit' value='Submit'>
     </form>
-  </body>
-</html>
+   </div>
+</body>

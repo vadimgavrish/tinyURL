@@ -1,0 +1,19 @@
+h4 {
+    font-weight: 100;
+    position: relative;
+}
+
+.headerLeft {
+    float: left;
+    position: relative;
+    bottom: 17px;
+}
+
+.headerRight {
+    float: right;
+    top: 5px;
+}
+
+.margin {
+    margin-left: 15px;
+}

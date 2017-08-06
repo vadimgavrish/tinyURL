@@ -1,0 +1,142 @@
+body {
+    background-image: url('/images/background.png');
+    background-size: cover;
+    font-family: helvetica;
+    font-weight: 100;
+    color: white;
+}
+
+.myContent {
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 0 auto;
+    background:rgba(255,255,255,0.35);
+    position: relative;
+    top: 25%;
+    transform: translateY(-25%);
+    text-align: center;
+    padding: 25px;
+}
+
+.myContent h3 {
+    font-weight: 100;
+    font-size: 200%;
+    text-align: right;
+    color: white;
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 45px;
+    font-family: 'Lobster', cursive;
+}
+
+.myContent input {
+    color: white;
+    font-size: 20px;
+    width: 300px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-bottom: 3px solid white;
+    background: transparent;
+    margin: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    height: 50px;
+}
+
+.myContent input::placeholder {
+    color: white;
+}
+
+.logo {
+    max-width: 300px;
+}
+
+.topButton {
+    font-size: 35px;
+    margin-top: 25px;
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 5px;
+    width: 200px;
+    color: hotpink;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    top: 10px;
+}
+
+.topButton:hover {
+    background-color: hotpink;
+    color: white;
+    border-color: hotpink;
+}
+
+.bottomButton {
+    font-size: 15px;
+    height: 40px;
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 5px;
+    width: 200px;
+    color: hotpink;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.bottomButton:hover {
+    background-color: hotpink;
+    color: white;
+    border-color: hotpink;
+}
+
+.defaultButton {
+    font-size: 15px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    width: 75px;
+    color: hotpink;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.defaultButton:hover {
+    background-color: hotpink;
+    color: white;
+    border-color: hotpink;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }

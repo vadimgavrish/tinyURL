@@ -1,25 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>TinyApp</title>
-    </head>
-    <body class='container'>
-        <header>
-            <% include ./partials/_header %>
-        </header>
-        <div class="container center">
-            <h3>URL's</h3>
+<head>
+    <title>TinyURL - Local URL Shortener</title>
+    <link rel='stylesheet' type='text/css' href='/stylesheets/styles.css'>
+    <link rel='stylesheet' type='text/css' href='/stylesheets/home.css'>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class='myContent'>
+    <header>
+        <% include ./partials/_header %>
+    </header>
+            <div class='top clearfix'>
+                <h2 class='title'>my links </h2>
+                <a href='/urls/new' style='text-decoration: none'><i class="material-icons addLink md-36">add_box</i></a>
+             </div>
+            <div class='divider'></div>  
+            <div>
             <% for (key in urls) { %>
-            <form method="post" action="/urls/<%= key%>">
-                <li style="list-style-type: none"><a href='/u/<%= key %>'><%= key %></a> - <%= urls[key]%> - <form method="post" action="/urls/<%= key%>"><button style="display: inline">Delete</button></li>
+            <form method='post' action='/urls/<%= key%>'>
+                <li style='list-style-type: none'><a href='/u/<%= key %>'><%= key %></a> - <%= urls[key]%> - <form method='post' action='/urls/<%= key%>'><button style='display: inline'>Delete</button></li>
             </form>
             <form action='/urls/<%= key %>'>
-                <button style="display: inline">Edit!</button>
+                <button style='display: inline'>Edit!</button>
             </form>
             <% }; %>
-            <h2>
-                <a href="/urls/new">Add a new URL</a>
-            </h2>
-        </div>
-    </body>
-</html>
+             </div>
+</body>

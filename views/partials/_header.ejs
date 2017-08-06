@@ -1,8 +1,18 @@
-<title>TinyURL</title>
-<div>
-    <h5>hello <%= name %>!</h5>
-    <form method='post' action='/logout'>
-        <%= email %>
-        <button>Log out</button>
-    </form>
-</div>
+<head>
+    <title>TinyURL - Local URL Shortener</title>
+    <link rel='stylesheet' type='text/css' href='/stylesheets/styles.css'>
+    <link rel='stylesheet' type='text/css' href='/stylesheets/header.css'>
+</head>
+<body>
+    <div class='clearfix'>
+        <div class='headerLeft'>
+            <h4>Welcome <%= name %>!</h4>
+        </div>
+        <div class='headerRight'>
+            <form method='post' action='/logout'>
+                <%= email %>
+                <button class='defaultButton margin'>log out</button>
+            </form>
+        </div>
+    </div>
+</body>

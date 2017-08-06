@@ -1,0 +1,38 @@
+h2 {
+    font-weight: 200;
+    font-size: 200%;
+    font-family: 'Lobster', cursive;
+    float: left;
+}
+
+.title {
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+}
+
+.addLink {
+    float: right;
+    position: relative;
+    bottom: 15px;
+    text-decoration: none;
+    color: white;
+    padding: 15px;
+}
+
+.addLink:hover {
+    color: hotpink;
+}
+
+.top {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.divider {
+    max-width: 450px;
+    margin: 0 auto;
+    border-bottom: 2px solid hotpink;
+    margin-bottom: 35px;
+}
