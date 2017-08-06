@@ -1,23 +1,30 @@
 <head>
     <title>TinyURL - Local URL Shortener</title>
     <link rel='stylesheet' type='text/css' href='/stylesheets/styles.css'>
+    <link rel='stylesheet' type='text/css' href='/stylesheets/edit.css'>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class='myContent'>
     <header>
         <% include ./partials/_header %>
     </header>
-        <h3>URL's</h3>
-        <li style='list-style-type: none'>
-            <%= shortURL %> - <%= longURL %>
-        </li>
+        <div class='top clearfix'>
+            <h2 class='title'>edit link</h2>
+            <a href='/urls' style='text-decoration: none'><i class="material-icons goBack md-36">list</i></a>
+        </div>
+        <div class='divider'></div>
+        <div class='link'>
+            <li style='list-style-type: none'>
+                <a href='#' class='shortLink'>&middot; <%= shortURL %> &middot;</a>
+            </li>
+        </div>
         <p>
             <form method='post' action='/urls/<%= shortURL %>/update'>
-                <label>Update URL:</label>
-                <input name='updatedURL' id='updatedURL' type='text' placeholder='http://' style='width: 300px'>
-                <input type='submit' value='Submit'>
+                <input name='updatedURL' id='updatedURL' type='text' placeholder='enter new url' style='width: 300px'>
+                <button class='defaultButton submit' style='display: inline'><i class="material-icons">done</i></button>
             </form>
         </p>
-        <h3><a href='/urls'>Go home</a></h3>
     </div>
 </body>

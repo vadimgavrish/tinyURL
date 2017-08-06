@@ -1,0 +1,43 @@
+.top {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-weight: 200;
+    font-size: 200%;
+    font-family: 'Lobster', cursive;
+    float: left;
+}
+
+.goBack {
+    float: right;
+    position: relative;
+    top: 15px;
+    text-decoration: none;
+    color: white;
+    padding: 15px;
+}
+
+.goBack:hover {
+    color: hotpink;
+}
+
+.divider {
+    position: relative !important;
+    bottom: 15px !important; 
+}
+
+.shortLink {
+    color: hotpink;
+    text-decoration: none;
+}
+
+.submit {
+    position: relative;
+    top: 5px;
+}
+
+.link {
+    font-size: 150%;
+}
