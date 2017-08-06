@@ -198,7 +198,7 @@ app.post('/urls/:id/update', (req, res) => {
   // Check for corrent URL input
   let longURL = req.body.updatedURL;
   if (longURL === '') {
-    res.status(400).send('Please enter a valid URL!');
+    res.redirect('/urls');
     return;
   }
   if ((longURL.substring(0,7) !== 'http://') && (longURL.substring(0,8) !== 'https://')) {
@@ -212,7 +212,7 @@ app.post('/urls/:id/update', (req, res) => {
 app.get('/u/:shortURL', (req, res) => {
   // Send error if invalid URL entered
   if (!urlDatabase[req.params.shortURL]) {
-    res.status(404).send('Page not found!');
+    res.status(400).send('Not a valid URL!');
     return;
   }
   // Get correct longURL from database and redirect to it

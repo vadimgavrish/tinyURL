@@ -28,9 +28,12 @@ h2 {
     bottom: 15px !important; 
 }
 
-.shortLink {
+.pink {
     color: hotpink;
-    text-decoration: none;
+}
+
+.white {
+    color: white;
 }
 
 .submit {
