@@ -34,5 +34,26 @@ h2 {
     max-width: 450px;
     margin: 0 auto;
     border-bottom: 2px solid hotpink;
-    margin-bottom: 35px;
+    margin-bottom: 15px;
+    position: relative;
+    bottom: 15px;
+}
+
+.myGrid {
+    padding: 5px;
+    margin: 0 auto;
+}
+
+.leftButton {
+    position:relative;
+    bottom: 8px;
+}
+
+.pushLeft {
+    margin-right: 15px;
+}
+
+.shortLink {
+    color: hotpink;
+    text-decoration: none;
 }

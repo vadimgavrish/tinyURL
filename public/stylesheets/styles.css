@@ -113,6 +113,14 @@ body {
     border-color: hotpink;
 }
 
+.floatLeft {
+    float: left;
+}
+
+.floatRight {
+    float: right;
+}
+
 .clearfix:after {
   visibility: hidden;
   display: block;
