@@ -1,6 +1,6 @@
 # TinyURL
 
-TinyURL is a full stack web applications that shortens lengthy URL's and runs locally on your machine. It is built with Node and Express.
+TinyURL is a full stack web application that shortens lengthy URL's and runs locally on your machine. It is built with Node and Express.
 
 ## Final Product
 
