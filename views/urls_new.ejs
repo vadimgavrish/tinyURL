@@ -1,16 +1,25 @@
 <head>
   <title>TinyURL - Local URL Shortener</title>
   <link rel='stylesheet' type='text/css' href='/stylesheets/styles.css'>
+  <link rel='stylesheet' type='text/css' href='/stylesheets/new.css'>
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
    <div class='myContent'>
     <header>
       <% include partials/_header %>
     </header>
-    <form action='/urls' method='POST' style=''>
-      <label for='longURL'>Enter a URL:</label>
-      <input name='longURL' id='longURL' type='text' placeholder='http://' style='width: 300px'>
-      <input type='submit' value='Submit'>
-    </form>
-   </div>
+    <div class='top clearfix'>
+        <h2 class='title'>add new link</h2>
+        <a href='/urls' style='text-decoration: none'><i class="material-icons goBack md-36">list</i></a>
+    </div>
+    <div class='divider'></div>
+      <div>
+        <form action='/urls' method='POST'>
+          <input name='longURL' id='longURL' type='text' placeholder='Enter a new URL' style='width: 300px'>
+          <button class='defaultButton submit' style='display: inline'><i class="material-icons">done</i></button>
+        </form>
+      </div>
+    </div>
 </body>

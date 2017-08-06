@@ -129,6 +129,16 @@ body {
   clear: both;
   height: 0;
 }
+
+.divider {
+    max-width: 450px;
+    margin: 0 auto;
+    border-bottom: 2px solid hotpink;
+    margin-bottom: 15px;
+    position: relative;
+    bottom: 15px;
+}
+
 .clearfix { display: inline-block; }
 /* start commented backslash hack \*/
 * html .clearfix { height: 1%; }

@@ -30,15 +30,6 @@ h2 {
     margin: 0 auto;
 }
 
-.divider {
-    max-width: 450px;
-    margin: 0 auto;
-    border-bottom: 2px solid hotpink;
-    margin-bottom: 15px;
-    position: relative;
-    bottom: 15px;
-}
-
 .myGrid {
     padding: 5px;
     margin: 0 auto;
