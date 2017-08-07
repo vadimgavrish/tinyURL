@@ -40,6 +40,7 @@ h2 {
 .leftButton {
     position:relative;
     bottom: 8px;
+    left: 15px;
 }
 
 .pushLeft {
