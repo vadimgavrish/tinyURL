@@ -19,18 +19,18 @@
         <% for (key in urls) { %>
         <table class='myGrid'>
             <tr>
-                <td>
+                <td class='alignLeft'>
                 <form method='post' action='/urls/<%= key%>'>
-                    <p class='pushLeft'>
-                        <a class='shortLink' href='/u/<%= key %>'><%= key %></a> &middot; <%= urls[key]%>
+                    <p class='pushLeft list'>
+                        &middot; <a class='shortLink' href='/u/<%= key %>'><%= key %></a> &middot; <%= urls[key]%>
                     </p>
                 </td>
-                <td>
+                <td class='alignRight'>
                     <form method='post' action='/urls/<%= key%>'>
                         <button class='defaultButton leftButton' style='display: inline'><i class="material-icons">clear</i></button></li>
                     </form>
                 </td>
-                <td>
+                <td class='alignRight'>
                     <form action='/urls/<%= key %>'>
                         <button class='defaultButton' style='display: inline'><i class="material-icons">create</i></button>
                     </form>

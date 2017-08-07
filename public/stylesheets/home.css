@@ -33,6 +33,8 @@ h2 {
 .myGrid {
     padding: 5px;
     margin: 0 auto;
+    width: 90%;
+    
 }
 
 .leftButton {
@@ -47,4 +49,16 @@ h2 {
 .shortLink {
     color: hotpink;
     text-decoration: none;
+}
+
+.alignLeft {
+    text-align: left;
+}
+
+.alignRight {
+    text-align: right;
+}
+
+.list {
+    max-width: 150px;
 }
